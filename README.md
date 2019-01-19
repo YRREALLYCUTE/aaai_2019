@@ -7,15 +7,15 @@ Q -
 The purpose of this project was to mine text from the [AAAI 2019 accepted papers PDF](https://aaai.org/Conferences/AAAI-19/wp-content/uploads/2018/11/AAAI-19_Accepted_Papers.pdf) document provided by Mos from Synced 机器之心. I attempted to use NLP methods to segment all text found in the pdf, and from segmented text find and tag author names 作者名, organization names 机构名 and paper topics 论文标题主题.
 
 ### Methods Used
-* PDF parsing
+* PDF convert to python read-able string
 * Text pattern search
 * NLP software setup
 * Data munging (various methods)
 
 ### Technologies
 * Python
-* Apache Tika
-* Python Regex
+* Apache Tika for parsing pdf document
+* Python Regex for cleaning up formatting/escape characters
 * Pandas, Jupyter
 * Stanford CoreNLP
 
@@ -38,6 +38,8 @@ The purpose of this project was to mine text from the [AAAI 2019 accepted papers
 * First and last names were split up by the Stanford CoreNLP Ner module.
 
 * I noticed a lot of names, especially Chinese pinyin ones were escaping the detection of the Stanford CoreNLP software. Instead they were often recognized as parts of organization names. If I had more time I may try to iteratively process them again, by concatenating all segments with 'ORGANIZATION' labels into one string, run it through Stanford CoreNLP and try to see if they can be found more accurately.
+
+* In hindsight, the entries found in the document were highly structured. It may be more optimal to use the regex library to search for text structure that define the components of each entry (such as title followed by index number, colon and two spaces; author name before brackets and organization name within brackets in a new line after title). In the future I would like to explore the regex library more as I think it is an important tool to use in text processing.
 
 ## Getting Started
 
