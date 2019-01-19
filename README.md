@@ -3,55 +3,48 @@
 Q:
 数据挖掘： 基于AAAI 2019会议录取的论文数据，从中提取出所有的：1.作者名；2.机构名；3.论文标题的主题分布
 
-This project is a part of the [Data Science Working Group](http://datascience.codeforsanfrancisco.org) at [Code for San Francisco](http://www.codeforsanfrancisco.org).  Other DSWG projects can be found at the [main GitHub repo](https://github.com/sfbrigade/data-science-wg).
-
 ## Project Intro/Objective
-The purpose of this project is ________. (Describe the main goals of the project and potential civic impact. Limit to a short paragraph, 3-6 Sentences)
-
-### Partner
-* [Name of Partner organization/Government department etc..]
-* Website for partner
-* Partner contact: [Name of Contact], [slack handle of contact if any]
-* If you do not have a partner leave this section out
+The purpose of this project was to mine text from the [AAAI 2019 accepted papers PDF](https://aaai.org/Conferences/AAAI-19/wp-content/uploads/2018/11/AAAI-19_Accepted_Papers.pdf) document provided by Mos from Synced 机器之心. I attempted to use NLP methods to segment all text found in the pdf, and from segmented text find and tag author names 作者名, organization names 机构名 and paper topics 论文标题主题.
 
 ### Methods Used
-* Inferential Statistics
-* Machine Learning
-* Data Visualization
-* Predictive Modeling
-* etc.
+* PDF parsing
+* Text pattern search
+* NLP software setup
+* Data munging (various methods)
 
 ### Technologies
-* R 
 * Python
-* D3
-* PostGres, MySql
+* Apache Tika
+* Python Regex
 * Pandas, jupyter
-* HTML
-* JavaScript
-* etc. 
+* Stanford CoreNLP
 
 ## Project Description
-(Provide more detailed overview of the project.  Talk a bit about your data sources and what questions and hypothesis you are exploring. What specific data analysis/visualization and modelling work are you using to solve the problem? What blockers and challenges are you facing?  Feel free to number or bullet point things here)
 
-## Needs of this project
+1. The first challenge was to turn .pdf text into something readable by python. I found a *parser* module in Apache Tika that allowed me to read in a .pdf as metadata and content. The content is all text from the accepted papers document in a single string with a lot of formatting annotations.
 
-- frontend developers
-- data exploration/descriptive statistics
-- data processing/cleaning
-- statistical modeling
-- writeup/reporting
-- etc. (be as specific as possible)
+2. I looked for an existing NLP software that can segment and tag English text. This was the most time-consuming part as I struggled to find a useful model that I am able to set up, using resources on the Web. After some considerations, I gave the Stanford CoreNLP a try. 
+
+3. The output from the Stanford CoreNLP NER (Named Entity Recognition) module still needed a bit of manual work to make presentable. I had assumed that someone would've built a script to format its output and made it public, but I had difficulty finding one so I wrote loops in Python to take out word segments labelled 'O', 'ORGANIZATION' and 'PERSON'.
+
+4. With some manual formatting, some person names, organization names and 'O' which I assume to be other part-of-speech labels were uploaded to tables. I thought that 'O' tags contained the most contextual information for the titles of papers so I combined the text strings following the indices of entries found in the document.
+
+## Challenges and Limitations
+
+* I wanted to process each entry (defined by numerical indices) in the document however wasn't able to use the regex module to split it at digit-and-colon. In addition, there were 1.1k entries in total, using a for loop to append Stanford CoreNLP output seemed like it would take forever or crash my machine, but processing the whole document as one string was instantanous. This way I lost a lot of valuable information as keeping the segmented text from each entry would have made it much easier to determine accuracy, especially for author names.
+
+* I did not have time to explore other NLP softwares in-depth, and therefoer did not compare the accuracy of different models against each other and figure out the best for this particular document. 
+
+* First and last names were split up by the Stanford CoreNLP Ner module.
+
+* I noticed a lot of names, especially Chinese pinyin ones were escaping the detection of the Stanford CoreNLP software. Instead they were often recognized as parts of organization names. If I had more time I may try to iteratively process them again, by concatenating all segments with 'ORGANIZATION' labels into one string and try to see if they can be found more accurately.
 
 ## Getting Started
 
-1. Clone this repo (for help see this [tutorial](https://help.github.com/articles/cloning-a-repository/)).
-2. Raw Data is being kept [here](Repo folder containing raw data) within this repo.
-
-    *If using offline data mention that and how they may obtain the data from the froup)*
-    
-3. Data processing/transformation scripts are being kept [here](Repo folder containing data processing scripts/notebooks)
-4. etc...
+1. Clone this [repo](https://github.com/jodiqiao/aaai_2019.git) 
+2. Pip install tika, nltk and other dependencies found in aaai_2019_nlp.ipynb
+3. Click [here](https://blog.manash.me/configuring-stanford-parser-and-stanford-ner-tagger-with-nltk-in-python-on-windows-f685483c374a) and follow the instructions for [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/download.html) set up
+4. Run aaai_2019_nlp.ipynb and obtain .csv outputs of final dataframes
 
 *If your project is well underway and setup is fairly complicated (ie. requires installation of many packages) create another "setup.md" file and link to it here*  
 
