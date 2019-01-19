@@ -46,7 +46,3 @@ The purpose of this project was to mine text from the [AAAI 2019 accepted papers
 3. Click [here](https://blog.manash.me/configuring-stanford-parser-and-stanford-ner-tagger-with-nltk-in-python-on-windows-f685483c374a) and follow the instructions for [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/download.html) set up
 4. Run aaai_2019_nlp.ipynb and obtain .csv outputs of final dataframes
 
-*If your project is well underway and setup is fairly complicated (ie. requires installation of many packages) create another "setup.md" file and link to it here*  
-
-5. Follow setup [instructions](Link to file)
-
