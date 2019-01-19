@@ -33,9 +33,7 @@ The purpose of this project was to mine text from the [AAAI 2019 accepted papers
 
 * I wanted to process each entry (defined by numerical indices) in the document however wasn't able to use the regex module to split it at digit-and-colon. In addition, there were 1.1k entries in total, using a for loop to append Stanford CoreNLP output seemed like it would take forever or crash my machine, but processing the whole document as one string was instantanous. This way I lost a lot of valuable information as keeping the segmented text from each entry would have made it much easier to determine accuracy, especially for author names.
 
-* I did not have time to explore other NLP softwares in-depth, and therefoer did not compare the accuracy of different models against each other and figure out the best for this particular document. 
-
-* First and last names were split up by the Stanford CoreNLP Ner module.
+* I did not have time to explore other NLP softwares in-depth, and therefoer did not compare the accuracy of different models against each other and figure out the best for this particular document. For example first and last names were split up by the Stanford CoreNLP Ner module, and proved difficult to put back together manually.
 
 * I noticed a lot of names, especially Chinese pinyin ones were escaping the detection of the Stanford CoreNLP software. Instead they were often recognized as parts of organization names. If I had more time I may try to iteratively process them again, by concatenating all segments with 'ORGANIZATION' labels into one string, run it through Stanford CoreNLP and try to see if they can be found more accurately.
 
