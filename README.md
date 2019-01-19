@@ -37,7 +37,7 @@ The purpose of this project was to mine text from the [AAAI 2019 accepted papers
 
 * First and last names were split up by the Stanford CoreNLP Ner module.
 
-* I noticed a lot of names, especially Chinese pinyin ones were escaping the detection of the Stanford CoreNLP software. Instead they were often recognized as parts of organization names. If I had more time I may try to iteratively process them again, by concatenating all segments with 'ORGANIZATION' labels into one string and try to see if they can be found more accurately.
+* I noticed a lot of names, especially Chinese pinyin ones were escaping the detection of the Stanford CoreNLP software. Instead they were often recognized as parts of organization names. If I had more time I may try to iteratively process them again, by concatenating all segments with 'ORGANIZATION' labels into one string, run it through Stanford CoreNLP and try to see if they can be found more accurately.
 
 ## Getting Started
 
