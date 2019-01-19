@@ -41,8 +41,8 @@ The purpose of this project was to mine text from the [AAAI 2019 accepted papers
 
 ## Getting Started
 
-1. Clone this [repo](https://github.com/jodiqiao/aaai_2019.git) 
-2. Pip install tika, nltk and other dependencies found in aaai_2019_nlp.ipynb
-3. Click [here](https://blog.manash.me/configuring-stanford-parser-and-stanford-ner-tagger-with-nltk-in-python-on-windows-f685483c374a) and follow the instructions for [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/download.html) set up
-4. Run aaai_2019_nlp.ipynb and obtain .csv outputs of final dataframes
+1. Clone this [repo](https://github.com/jodiqiao/aaai_2019.git).
+2. Pip install tika, nltk and other dependencies found in aaai_2019_nlp.ipynb.
+3. Click [here](https://blog.manash.me/configuring-stanford-parser-and-stanford-ner-tagger-with-nltk-in-python-on-windows-f685483c374a) and follow the instructions for [Stanford CoreNLP](https://stanfordnlp.github.io/CoreNLP/download.html) set up.
+4. Run aaai_2019_nlp.ipynb and obtain .csv outputs of final dataframes, my outputs can be found in the [csvs](https://github.com/jodiqiao/aaai_2019/tree/master/csvs) folder.
 
