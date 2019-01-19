@@ -16,7 +16,7 @@ The purpose of this project was to mine text from the [AAAI 2019 accepted papers
 * Python
 * Apache Tika
 * Python Regex
-* Pandas, jupyter
+* Pandas, Jupyter
 * Stanford CoreNLP
 
 ## Project Description
